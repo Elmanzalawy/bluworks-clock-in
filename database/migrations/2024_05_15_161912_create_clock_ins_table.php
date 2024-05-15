@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('clock_ins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('worker_id')->references('id')->on('workers');
-            $table->decimal('latitude');
-            $table->decimal('longitude');
+            $table->decimal('latitude', 8, 5);
+            $table->decimal('longitude', 8, 5);
             $table->timestamp('timestamp');
         });
     }
