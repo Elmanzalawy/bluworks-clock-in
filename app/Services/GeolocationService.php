@@ -16,6 +16,10 @@ class GeolocationService
      */
     public function getLinearDistance(float $lat1, float $lng1, float $lat2, float $lng2): float
     {
+        // validate both coordinates
+        $this->validateCoordinates($lat1, $lng1);
+        $this->validateCoordinates($lat2, $lng2);
+
         $earth_radius = 6371;
 
         $dLat = deg2rad($lat2 - $lat1);
@@ -26,5 +30,28 @@ class GeolocationService
         $distance_km = $earth_radius * $c;
 
         return $distance_km;
+    }
+
+    /**
+     * Validate coordinates
+     *
+     * @param  float $lat
+     * @param  float $lng
+     * @throws \Exception
+     * @return void
+     */
+    private function validateCoordinates(float $lat, float $lng): void
+    {
+        $validCoordinates = true;
+
+        if ($lat < -90 || $lat > 90) {
+            $validCoordinates = false;
+        } else if ($lng < -180 || $lng > 180) {
+            $validCoordinates = false;
+        }
+
+        if (!$validCoordinates) {
+            throw new \Exception('invalid coordinates');
+        }
     }
 }
