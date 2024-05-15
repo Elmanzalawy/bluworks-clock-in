@@ -63,6 +63,7 @@ class ClockInController extends Controller
     {
         $worker = Worker::find($request->worker_id);
 
+        // Return all clock-ins associated with this worker
         return response()->json($worker->clockIns()->get());
     }
 }
