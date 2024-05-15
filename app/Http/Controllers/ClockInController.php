@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClockInWorkerRequest;
 use App\Http\Requests\GetClockInsRequest;
+use App\Http\Resources\ClockInResource;
 use App\Models\ClockIn;
 use App\Models\Worker;
 use App\Services\GeolocationService;
@@ -52,10 +53,10 @@ class ClockInController extends Controller
         }
 
         // Save clock-in to database after validation:
-        $worker->clockIns()->create($request->validated());
+        $clockIn = $worker->clockIns()->create($request->validated());
 
         // Return successful response:
-        return response()->json($worker->clockIns()->latest()->first());
+        return response()->json(ClockInResource::make($clockIn));
     }
 
     /**
@@ -69,6 +70,6 @@ class ClockInController extends Controller
         $worker = Worker::find($request->worker_id);
 
         // Return all clock-ins associated with this worker
-        return response()->json($worker->clockIns()->get());
+        return response()->json(ClockInResource::collection($worker->clockIns()->get()));
     }
 }
