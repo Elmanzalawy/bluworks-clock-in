@@ -30,4 +30,9 @@ to enable accurate live data for decision makers.
     php artisan l5-swagger:generate
     ```
 
+-   Start the server
+    ```bash
+    php artisan serve
+    ```
+
 -   Use swagger docs on the URL `<APP_URL>/api/documentation`
