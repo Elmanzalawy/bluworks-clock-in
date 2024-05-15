@@ -40,8 +40,8 @@ class ClockInController extends Controller
         $linearDistanceKm = $this->geolocationService->getLinearDistance(
             $request->latitude,
             $request->longitude,
-            ClockIn::TARGET_CLOCK_IN_LOCATION['lat'],
-            ClockIn::TARGET_CLOCK_IN_LOCATION['lng']
+            ClockIn::TARGET_CLOCK_IN_COORDINATES['lat'],
+            ClockIn::TARGET_CLOCK_IN_COORDINATES['lng']
         );
 
         // Return error if worker is outside the maximum clock-in distance:
