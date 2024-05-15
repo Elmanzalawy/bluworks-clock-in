@@ -13,6 +13,13 @@ class ClockIn extends Model
     const CREATED_AT = 'timestamp';
     const UPDATED_AT = null;
 
+    const TARGET_CLOCK_IN_LOCATION = [
+        'lat' => 30.0493558,
+        'lng' => 31.2403066,
+    ];
+
+    const MAXIMUM_CLOCK_IN_DISTANCE_KM = 2;
+
     protected $fillable = [
         'worker_id',
         'latitude',
