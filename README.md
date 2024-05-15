@@ -22,7 +22,7 @@ to enable accurate live data for decision makers.
     php artisan migrate --seed
     ```
 
-    Or use import the schema + data from the .sql file attached to the task submission.
+    Or import the schema and data from the `database-seeder.sql.zip` file in the root directory
 
 -   Generate swagger docs
 
