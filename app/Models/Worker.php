@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Worker extends Model
@@ -14,8 +15,13 @@ class Worker extends Model
         'name',
     ];
 
-    public function clockIns()
+    /**
+     * Return clockIns relation
+     *
+     * @return HasMany
+     */
+    public function clockIns(): HasMany
     {
-        // todo..
+        return $this->hasMany(ClockIn::class);
     }
 }
