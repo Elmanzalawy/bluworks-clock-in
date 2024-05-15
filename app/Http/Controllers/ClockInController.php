@@ -14,6 +14,11 @@ class ClockInController extends Controller
 {
     protected $geolocationService;
 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->geolocationService = new GeolocationService;

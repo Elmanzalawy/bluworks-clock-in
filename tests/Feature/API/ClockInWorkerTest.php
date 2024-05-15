@@ -8,12 +8,22 @@ use Tests\TestCase;
 
 class ClockInWorkerTest extends TestCase
 {
+    /**
+     * setUp
+     *
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
         Worker::factory(1)->create();
     }
 
+    /**
+     * test_worker_can_clock_in
+     *
+     * @return void
+     */
     public function test_worker_can_clock_in(): void
     {
         $this->post(route('api.worker.clockInWorker', [
@@ -26,6 +36,11 @@ class ClockInWorkerTest extends TestCase
         $this->assertEquals(1, ClockIn::count());
     }
 
+    /**
+     * test_worker_cannot_clock_in_outside_the_maximum_distance
+     *
+     * @return void
+     */
     public function test_worker_cannot_clock_in_outside_the_maximum_distance(): void
     {
         $this->post(route('api.worker.clockInWorker', [
@@ -38,6 +53,11 @@ class ClockInWorkerTest extends TestCase
         $this->assertEquals(0, ClockIn::count());
     }
 
+    /**
+     * test_worker_id_parameter_must_be_valid
+     *
+     * @return void
+     */
     public function test_worker_id_parameter_must_be_valid(): void
     {
         $this->post(route('api.worker.clockInWorker', [
@@ -66,6 +86,11 @@ class ClockInWorkerTest extends TestCase
         $this->assertEquals(0, ClockIn::count());
     }
 
+    /**
+     * test_timestamp_parameter_must_be_valid
+     *
+     * @return void
+     */
     public function test_timestamp_parameter_must_be_valid(): void
     {
         $this->post(route('api.worker.clockInWorker', [
@@ -86,6 +111,11 @@ class ClockInWorkerTest extends TestCase
         $this->assertEquals(0, ClockIn::count());
     }
 
+    /**
+     * test_latitude_parameter_must_be_valid
+     *
+     * @return void
+     */
     public function test_latitude_parameter_must_be_valid(): void
     {
         $this->post(route('api.worker.clockInWorker', [
@@ -122,6 +152,11 @@ class ClockInWorkerTest extends TestCase
         $this->assertEquals(0, ClockIn::count());
     }
 
+    /**
+     * test_longitude_parameter_must_be_valid
+     *
+     * @return void
+     */
     public function test_longitude_parameter_must_be_valid(): void
     {
         $this->post(route('api.worker.clockInWorker', [
