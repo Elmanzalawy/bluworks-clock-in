@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClockInWorkerRequest;
+use App\Http\Requests\GetClockInsRequest;
 use App\Models\ClockIn;
 use App\Models\Worker;
 use App\Services\GeolocationService;
@@ -50,5 +51,18 @@ class ClockInController extends Controller
 
         // Return successful response:
         return response()->json($worker->clockIns()->latest()->first());
+    }
+
+    /**
+     * Get all clock-ins associated with worker
+     *
+     * @param  mixed $request
+     * @return JsonResponse
+     */
+    public function getClockIns(GetClockInsRequest $request): JsonResponse
+    {
+        $worker = Worker::find($request->worker_id);
+
+        return response()->json($worker->clockIns()->get());
     }
 }

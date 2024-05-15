@@ -21,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('worker')->as('api.worker.')->group(function () {
     Route::post('clock-in', [ClockInController::class, 'clockInWorker'])->name('clockInWorker');
+    Route::get('clock-ins', [ClockInController::class, 'getClockIns'])->name('getClockIns');
 });
